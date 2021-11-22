@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Image Maps event plugin</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Image Maps Plugin for CKEditor</h1>
+
+<h2>Introduction</h2>
+<p>This is a dialog-based plugin to handle insertion and modification of image map areas in <a href="http://www.ckeditor.com">CKEditor</a>.</p>
+
+<h3 id="contact">Author:</h3>
+<p><a href="mailto:amla70@gmail.com">Alfonso Mart&iacute;nez de Lizarrondo</a></p>
+<h3>Sponsored by:</h3>
+<p>&nbsp;</p>
+
+<h3>Version history: </h3>
+<ol>
+  <li>2.0: 1-March-2011. First version ported from the FCKeditor version.</li>
+  <li>2.1: 18-September-2011. Adjustments of resizing the dialog.</li>
+  <li>2.2: 15-October-2011. IE8 bug that didn't allow to show the contents of the dialog since [7185].</li>
+	<li>3.0 5-November-2011. Rewritten to fit correctly with the CKEditor dialogs without using the iframe as that's not properly supported by CKEditor (see versions 2.1 and 2.2)<br>
+	The browser functionality requires a CKEditor version > 3.6.2, because there was <a href="http://dev.ckeditor.com/changeset/7296">a bug</a> that I fixed for this plugin.</li>
+	<li>3.1 15-November-2011. Automatically detect CKEditor version to avoid problems with "browse server" button<br>
+	Reorganize structure and simplify some parts</li>
+	<li>3.2 31-May-2012. Use a single sprite for the icons</li>
+	<li>3.2.1 3-June-2012. Fix problem with the detection of CKEditor version</li>
+	<li>3.3 9-July-2012. Fix problems with IE (first click while drawing and double click in the editor)</li>
+	<li>3.3.1 10-July-2012. Fix problems with Chrome. Switched to use the uncompressed imgmap.js as some changes were required there.</li>
+	<li>3.3.2 11-July-2012. Avoid drag&drop of the image.</li>
+	<li>3.3.3 8-September-2012. If the main page was scrolled, drawing of polygons failed in all browsers != IE.</li>
+</ol>
+
+<h2>Installation</h2>
+<h3>1. Copying the files</h3>
+<p>Extract the contents of the zip in you plugins directory, so it ends up like
+    this<br>
+    <!--<img src="installation.png" alt="Screenshot of installation" width="311" height="346" longdesc="#install">-->
+    </p>
+<pre id="--install">
+ckeditor\
+	...
+	images\
+	lang\
+	plugins\
+		...
+		imagemaps\
+			plugin.js
+			docs\
+			images\
+			jscripts\
+			lang\
+		...
+	skins\
+	themes\
+</pre>
+<h3>2. Adding it to CKEditor</h3>
+<p>Now add the plugin in your <em>config.js</em> or custom js configuration
+file:
+<code>config.extraPlugins='imagemaps'; </code>
+</p>
+
+<h3>3. Add it to your toolbar</h3>
+<p>In your toolbar configuration, add a new 'ImageMaps' item in the place where you want the button to show up.</p>
+
+<h3>4. Configuration</h3>
+<p>There are no configuration options specific to this plugin</p>
+
+<h3>5. Use it</h3>
+<p>Clear your cache and reload your editor. Now when you select an image the new button will be enabled so you can map the active regions.
+If you select an image with an existing map the button will be highlighted.</p>
+
+<!--
+<h2>Final notes</h2>
+-->
+
+<h2>Disclaimers</h2>
+<p>CKEditor is  &copy; CKSource.com</p>
+<p>The core imgmap code is  &copy; Adam Maschek </p>
+</body>
+</html>

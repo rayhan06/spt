@@ -1,0 +1,24 @@
+.viewmodal {
+    padding: 0 25px;
+    border-radius: 0.21429em;
+    top: 3em !important;
+}
+
+.modal-content .close {
+    font-size: 1.28571em;
+    top: -0.85714em;
+    position: absolute;
+    right: -0.85714em;
+    height: 35px;
+    width: 35px;
+    background-color: #313a46;
+    opacity: 1;
+    border: 2px solid #ffffff;
+    text-shadow: none;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.83333em;
+    right: -28px;
+    top: -1%;
+}

@@ -1,0 +1,56 @@
+
+@import url('https://fonts.maateen.me/solaiman-lipi/font.css');
+body{
+    font-family: 'SolaimanLipi', sans-serif;
+}
+
+.parliamentlogin {
+    position: absolute;
+    width: 27%;
+    top: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    height: auto;
+    left: 50%;
+    margin-right: -50%;
+}
+
+.parliamentlogin h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+.checkbox a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.submitbutton {
+    display: flex;
+
+    width: 100%;
+}
+
+.submitbutton > a  {
+    margin-left: 0px;
+}
+
+.submitbutton > a  > img {
+    width: 75%;
+    float: right;
+}
+
+
+.mainlogin{
+    position: relative;
+}
+.plogin {
+    background-image: url(../../img/login/home1/From_BG.png);
+    background-size: cover;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: #fff;
+
+}

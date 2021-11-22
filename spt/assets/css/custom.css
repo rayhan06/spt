@@ -1,0 +1,107 @@
+.btn.btn-outline.green-meadow {
+    border-color: #1BBC9B;
+    color: #1BBC9B;
+    background: 0 0;
+}
+
+.sbold {
+    font-weight: 600!important;
+}
+
+.uppercase {
+    text-transform: uppercase!important;
+}
+
+.btn-circle {
+    border-radius: 25px!important;
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.advanceseach {
+    display: block !important;
+    width: 80px !important;
+    height: 30px !important;
+    /* padding: 10px; */
+}
+
+modal-content {
+    padding: 0 25px;
+    border-radius: 0.21429em;
+    top: 30px;
+}
+
+.modal-content .close {
+    font-size: 14px;
+    top: -0.85714em;
+    position: absolute;
+    right: -0.85714em;
+    height: 30px;
+    width: 30px;
+    background-color: #313a46;
+    opacity: 1;
+    border: 2px solid #ffffff;
+    text-shadow: none;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.83333em;
+    right: -28px;
+    top: 6%;
+}
+
+.viewmodal {
+    padding: 0 25px;
+    border-radius: 0.21429em;
+    top: 8em !important;
+}
+
+.page-content-wrapper .page-content {
+    margin-left: 235px;
+    margin-top: 30px !important;
+}
+
+.col-lg-3.control-label.treeselect {
+    display: block;
+    float: left;
+    padding-left: 0px !important;
+    text-align: left;
+}
+
+.portlet.light {
+    margin-top: 30px;
+}
+
+.cke_bottom{display:none}
+
+input#pageno {
+    width: 13% !important;
+}
+
+
+@media screen and (max-width: 766px) {
+input#RECORDS_PER_PAGE {
+    text-align: center !important;
+}
+label.smsize{
+text-align: center !important;
+}
+
+.col-xs-5.col-sm-12.col-md-8.col-lg-7 {
+    text-align: center;
+}
+
+
+}
+
+@media screen and (max-width: 574px) {
+.col-xs-6.col-sm-4.col-md-4.col-lg-3 {
+    margin: 0 22px;
+}
+}

@@ -1,0 +1,254 @@
+<%@page import="language.LC"%>
+<%@page import="login.LoginDTO"%>
+<%@page import="sessionmanager.SessionConstants"%>
+<%@page import="org.apache.commons.lang3.StringUtils"%>
+<%@page import="language.LM"%>
+<%@ page language="java" %>
+<%@ page import="util.RecordNavigator"%>
+<%@ page import="java.util.Arrays"%>
+<%@ page import="searchform.SearchForm"%>
+<%@ page import="pb.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
+
+
+<%
+	System.out.println("Inside nav.jsp");
+	String url = request.getParameter("url");
+	String navigator = request.getParameter("navigator");
+	String pageName = request.getParameter("pageName");
+	if (pageName == null)
+		pageName = "Search";
+	String pageno = "";
+	LoginDTO loginDTO = (LoginDTO) request.getSession(true).getAttribute(SessionConstants.USER_LOGIN);
+	RecordNavigator rn = (RecordNavigator) session.getAttribute(navigator);
+	pageno = (rn == null) ? "1" : "" + rn.getCurrentPageNo();
+
+	System.out.println("rn " + rn);
+
+	String action = "Approval_testServlet?actionType=getApprovalPage";
+	System.out.println("URLaction = " + action);
+	String context = "../../.." + request.getContextPath() + "/";
+	String link = context + url;
+	String concat = "?";
+	if (url.contains("?")) {
+		concat = "&";
+	}
+	String searchFieldInfo[][] = rn.getSearchFieldInfo();
+	String totalPage = "1";
+	if (rn != null)
+		totalPage = rn.getTotalPages() + "";
+	int row = 0;
+
+	String Language = LM.getText(LC.APPROVAL_TEST_EDIT_LANGUAGE, loginDTO);
+	String Options;
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	Date date = new Date();
+	String datestr = dateFormat.format(date);
+	int pagination_number = 0;
+	boolean isPermanentTable = rn.m_isPermanentTable;
+	System.out.println("In nav::: isPermanentTable = " + isPermanentTable);
+%>
+
+
+
+
+
+
+<!-- search control -->
+<div class="portlet box portlet-btcl">
+	<div 
+	class="portlet-body form expand"
+	>
+		<!-- BEGIN FORM-->
+		<div class="container-fluid">
+			<div class="row col-lg-offset-1">
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">Approval Path</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<select class='form-control'  name='job_cat' id = 'job_cat'>
+							<%
+										
+										Options = CatDAO.getOptions(Language, "job", -2);
+										out.print(Options);
+							%>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">Approval Status</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<select class='form-control'  name='approval_status_cat' id = 'approval_status_cat'>
+							<%
+										
+										Options = CatDAO.getOptions(Language, "approval_status", -2);
+										out.print(Options);
+							%>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">Initiated By</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<select class='form-control'  name='initiator' id = 'initiator'>
+							<%
+										
+										Options = CommonDAO.getOrganograms();
+										out.print(Options);
+							%>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">Assigned To</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<select class='form-control'  name='assigned_to' id = 'assigned_to'>
+							<%
+										
+										Options = CommonDAO.getOrganogramsByOrganogramID();
+										out.print(Options);
+							%>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">From Initiation Date</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<input type="date" class='form-control'  name='starting_date' id = 'starting_date'/>						
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="margin-top: 5px;">
+					<div class="col-xs-2 col-sm-4 col-md-4">
+						<label for="" class="control-label pull-right">To Initiation Date</label>
+					</div>
+					<div class="col-xs-10 col-sm-8 col-md-8">
+						<input type="date" class='form-control'  name='ending_date' id = 'ending_date'/>						
+					</div>
+				</div>
+
+			</div>	
+
+
+			<div class=clearfix></div>
+
+			<div class="form-actions fluid" style="margin-top:10px">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-offset-3 col-xs-12 col-md-12  col-md-12 col-lg-9">							
+							<div class="col-xs-4  col-sm-4  col-md-6">
+								<input type="hidden" name="search" value="yes" />
+								<!-- 				          	<input type="reset" class="btn  btn-sm btn btn-circle  grey-mint btn-outline sbold uppercase" value="Reset" > -->
+								<input type="submit" onclick="allfield_changed('',0)"
+									class="btn  btn-sm btn btn-circle btn-sm green-meadow btn-outline sbold uppercase advanceseach"
+									value="<%=LM.getText(LC.GLOBAL_SEARCH, loginDTO) %>">
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!-- END FORM-->
+	</div>
+
+
+<%@include file="../common/pagination_with_go2.jsp"%>
+
+
+<template id = "loader">
+<div class="modal-body">
+        <img alt="" class="loading" src="<%=context%>/templates/ViewGrievances_files/loading-spinner-grey.gif">
+        <span>Loading...</span>
+</div>
+</template>
+
+
+<script type="text/javascript">
+
+	function dosubmit(params)
+	{
+		document.getElementById('tableForm').innerHTML = document.getElementsByTagName("template")[0].innerHTML;
+		//alert(params);
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) 
+		    {
+		    	document.getElementById('tableForm').innerHTML = this.responseText ;
+				setPageNo();
+				searchChanged = 0;
+			}
+		    else if(this.readyState == 4 && this.status != 200)
+			{
+				alert('failed ' + this.status);
+			}
+		  };
+		  
+		  xhttp.open("Get", "<%=action%>&isPermanentTable=<%=isPermanentTable%>&" + params, true);
+		  xhttp.send();
+		
+	}
+
+	function allfield_changed(go, pagination_number)
+	{
+		var params = "";
+		params += 'job_cat=' + document.getElementById("job_cat").value;
+		params += '&approval_status_cat=' + document.getElementById("approval_status_cat").value;
+		params += '&initiator=' + document.getElementById("initiator").value;
+		params += '&assigned_to=' + document.getElementById("assigned_to").value;
+		params += '&starting_date=' + document.getElementById("starting_date").value;
+		params += '&ending_date=' + document.getElementById("ending_date").value;
+		
+		params +=  '&search=true&ajax=true&ViewAll=' + document.getElementById("ViewAll").value;
+
+		var pageNo = document.getElementsByName('pageno')[0].value;
+		var rpp = document.getElementsByName('RECORDS_PER_PAGE')[0].value;
+
+		var totalRecords = 0;
+		var lastSearchTime = 0;
+		if(document.getElementById('hidden_totalrecords'))
+		{
+			totalRecords = document.getElementById('hidden_totalrecords').value;
+			lastSearchTime = document.getElementById('hidden_lastSearchTime').value;
+		}
+
+
+		if(go !== '' && searchChanged == 0)
+		{
+			console.log("go found");
+			params += '&go=1';
+			pageNo = document.getElementsByName('pageno')[pagination_number].value;
+			rpp = document.getElementsByName('RECORDS_PER_PAGE')[pagination_number].value;
+			setPageNoInAllFields(pageNo);
+			setRPPInAllFields(rpp);
+		}
+		else
+		{
+			console.log("go not found")
+		}
+		params += '&pageno=' + pageNo;
+		params += '&RECORDS_PER_PAGE=' + rpp;
+		params += '&TotalRecords=' + totalRecords;
+		params += '&lastSearchTime=' + lastSearchTime;
+		dosubmit(params);
+	
+	}
+
+</script>
+
